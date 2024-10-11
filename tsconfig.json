@@ -1,0 +1,16 @@
+{ 
+  "compilerOptions": { 
+    "baseUrl": "src", 
+    "target": "es5", 
+    "outDir": "./dist/", 
+    "module": "es6", 
+    "jsx": "react-jsx", 
+    "allowJs": true, 
+    "resolveJsonModule": true, 
+    "isolatedModules": true, 
+    "moduleResolution": "node", 
+    "allowSyntheticDefaultImports": true 
+  }, 
+  "include": ["src"], 
+  "exclude": ["node_modules"] 
+}

@@ -1,0 +1,33 @@
+.header {
+  padding: 30px 15px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.header_btn {
+  height: 20px;
+  color: white;
+  font-size: 17px;
+  top: 57px;
+  right: 40px;
+  cursor: pointer;
+}
+
+.header_btn:hover {
+  color: rgb(197, 179, 88);
+}
+
+.icon_author {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  color: white;
+  top: 56px;
+  right: 90px;
+  cursor: pointer;
+}
+
+.icon_author:hover {
+  color: rgb(197, 179, 88);
+}

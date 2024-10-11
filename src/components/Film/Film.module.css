@@ -1,0 +1,33 @@
+.film {
+    display: flex;
+    padding: 0 150px 100px 50px;
+    gap:100px;
+}
+
+.film__image {
+    width: 200px;
+    height: 300px;
+}
+
+.film__card_description {
+    flex-grow: 1;
+}
+
+.film__card_description_item {
+    color: white;
+    display: flex;
+    gap: 10px;
+
+}
+
+.red {
+    color: red;
+}
+
+.grey {
+    color: grey;
+}
+
+.green {
+    color: green;
+}

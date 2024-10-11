@@ -1,0 +1,10 @@
+.film {
+    display: flex;
+    gap: 30px;
+}
+
+.film__poster {
+    width: 500px;
+    height: 550px;
+    
+}

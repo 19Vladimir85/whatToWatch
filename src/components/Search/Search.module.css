@@ -1,0 +1,49 @@
+.form {
+  width: 450px;
+  height: 30px;
+  position: relative;
+}
+
+.input,
+.search_btn {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+  font-size: 17px;
+  background: white;
+}
+.search_btn {
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  background: white;
+  cursor: pointer;
+  position: absolute;
+  left: 415px;
+  color: gray;
+}
+
+.search_btn:hover {
+  color: black;
+}
+
+
+.wrapper {
+position: relative;
+}
+
+.popUp{
+  position: absolute;
+  z-index: 1000;
+  top: 35px;
+  width: 450px;
+  min-height: 60px;
+  max-height: 700px;
+  overflow-y: scroll;
+  background-color: white;
+}

@@ -1,0 +1,30 @@
+.menu {
+  display: flex;
+  align-items: center;
+  /* width: 550px; */
+  gap: 30px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.menu_list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 17px;
+}
+
+.menu_item {
+  display: inline;
+}
+
+.text {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.text:hover {
+  color: rgb(197, 179, 88);
+}
