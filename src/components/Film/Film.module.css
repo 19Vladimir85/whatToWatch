@@ -1,7 +1,12 @@
 .film {
     display: flex;
-    padding: 0 150px 100px 50px;
+    padding: 0 350px 100px 50px;
     gap:100px;
+}
+
+.wrapper :hover {
+    text-shadow: rgb(229, 213, 150) 1px 0 10px;
+    background-color: rgba(29, 29, 39, .7);
 }
 
 .film__image {
@@ -11,6 +16,14 @@
 
 .film__card_description {
     flex-grow: 1;
+}
+
+.film__card_description_name {
+    color: white;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+
 }
 
 .film__card_description_item {

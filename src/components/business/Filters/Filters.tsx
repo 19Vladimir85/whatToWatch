@@ -1,6 +1,12 @@
-import { useContext } from "react";
-import styles from "./Filters.module.css";
-import { FilterContext } from "context/filterContext";
+import { useContext } from 'react';
+import styles from './Filters.module.css';
+import { FilterContext } from 'context/filterContext';
+
+type genre = 'комедия' | 'ужасы' | 'криминал' | 'драма' | 'мелодрама';
+const genres: genre[] = ['комедия', 'ужасы', 'криминал', 'драма', 'мелодрама'];
+
+type country = 'Россия' | 'США' | 'Германия' | 'Франция' | 'Австралия';
+const countries: country[] = ['Россия', 'США', 'Германия', 'Франция', 'Австралия'];
 
 interface IRange {
   from?: string;
@@ -8,10 +14,10 @@ interface IRange {
 }
 
 export interface IFilterState {
-  genre?: string[];
+  genre?: genre[];
   data?: IRange;
   raiting?: string;
-  country?: string[];
+  country?: country[];
 }
 
 interface IFilterProps {
@@ -19,19 +25,8 @@ interface IFilterProps {
   onFilterSet?: (filters: IFilterState) => void;
 }
 
-
-type genre = "комедия" | "ужасы" | "криминал" | "драма" | "мелодрама";
-const genres: genre[] = ["комедия", "ужасы", "криминал", "драма", "мелодрама"];
-
-type country = "Россия" | "США" | "Германия" | "Франция" | "Австралия";
-const countries: country[] = ["Россия", "США", "Германия", "Франция", "Австралия"];
-
-export const Filters: React.FC<IFilterProps> = ({
-  defaultFilters,
-  onFilterSet,
-}) => {
-
-const {filters, setFilters} = useContext(FilterContext)
+export const Filters: React.FC<IFilterProps> = ({ defaultFilters, onFilterSet }) => {
+  const { filters, setFilters } = useContext(FilterContext);
 
   const onGenreChange = (genre: genre, isCheked: boolean) => {
     if (isCheked) {
@@ -55,62 +50,41 @@ const {filters, setFilters} = useContext(FilterContext)
     }
   };
 
-  console.log(filters);
+  const changeRaiting = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters({ ...filters, raiting: event.target.value });
+  };
 
-  const changeRaiting = (event) => {
-    setFilters({...filters, raiting: event.target.value})
-  }
-
-const handleChange = () => {
-  onFilterSet(filters)
-}
-
-  console.log(filters);
-
+  const handleChange = () => {
+    onFilterSet(filters);
+  };
 
   return (
-    
-      <div className={styles.filter}>
-        <div className={styles.filter__title}>Жанры</div>
-        <div className={styles.filter__value}>
+    <div className={styles.filter}>
+      <div className={styles.filter__title}>Жанры</div>
+      <div className={styles.filter__value}>
         {genres.map((el) => (
           <>
-            <input
-              id={el}
-              type="checkbox"
-              checked={filters.genre?.includes(el)}
-              onChange={(event) => onGenreChange(el, event.target.checked)}
-            />
+            <input id={el} type="checkbox" checked={filters.genre?.includes(el)} onChange={(event) => onGenreChange(el, event.target.checked)} />
             <label htmlFor={el}>{el}</label>
           </>
-
-        
         ))}
-        </div>
+      </div>
 
-        <div className={styles.filter__title}>Страна</div>
-        <div className={styles.filter__value}>
+      <div className={styles.filter__title}>Страна</div>
+      <div className={styles.filter__value}>
         {countries.map((el) => (
           <>
-            <input
-              id={el}
-              type="checkbox"
-              checked={filters.country?.includes(el)}
-              onChange={(event) => onСountryChange(el, event.target.checked)}
-            />
+            <input id={el} type="checkbox" checked={filters.country?.includes(el)} onChange={(event) => onСountryChange(el, event.target.checked)} />
             <label htmlFor={el}>{el}</label>
           </>
-
-        
         ))}
-        </div>
-
-        <div className={styles.filter__title}>Рейтинг</div>
-        <div className={styles.filter__value}>
-          <input type="range" min={1} max={10} value={filters.raiting} onChange={changeRaiting}></input>
-        </div>
-<button onClick={handleChange}>Отправить</button>
       </div>
-   
+
+      <div className={styles.filter__title}>Рейтинг</div>
+      <div className={styles.filter__value}>
+        <input type="range" min={1} max={10} value={filters.raiting} onChange={changeRaiting}></input>
+      </div>
+      <button onClick={handleChange}>Отправить</button>
+    </div>
   );
 };
