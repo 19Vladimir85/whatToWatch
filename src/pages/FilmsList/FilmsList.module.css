@@ -16,3 +16,7 @@
     gap: 200px;
 } */
 
+.wrapper {
+  overflow-y: scroll;
+  height: 600px;
+}

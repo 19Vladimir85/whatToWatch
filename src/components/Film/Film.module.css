@@ -1,46 +1,44 @@
 .film {
-    display: flex;
-    padding: 0 350px 100px 50px;
-    gap:100px;
+  display: flex;
+  padding: 0 300px 100px 50px;
+  gap: 100px;
 }
 
 .wrapper :hover {
-    text-shadow: rgb(229, 213, 150) 1px 0 10px;
-    background-color: rgba(29, 29, 39, .7);
+  text-shadow: rgb(229, 213, 150) 1px 0 10px;
+  background-color: rgba(29, 29, 39, 0.7);
 }
 
 .film__image {
-    width: 200px;
-    height: 300px;
+  width: 200px;
+  height: 300px;
 }
 
 .film__card_description {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .film__card_description_name {
-    color: white;
-    display: flex;
-    gap: 10px;
-    font-size: 18px;
-
+  color: white;
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
 }
 
 .film__card_description_item {
-    color: white;
-    display: flex;
-    gap: 10px;
-
+  color: white;
+  display: flex;
+  gap: 10px;
 }
 
 .red {
-    color: red;
+  color: red;
 }
 
 .grey {
-    color: grey;
+  color: grey;
 }
 
 .green {
-    color: green;
+  color: green;
 }

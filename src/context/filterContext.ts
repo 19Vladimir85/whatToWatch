@@ -7,7 +7,7 @@ interface IFilterContext {
 }
 
 const initialState: IFilterContext = {
-  filters: { genre: [], country: [] },
+  filters: { genre: [], country: 'Россия' },
   setFilters: (filters: IFilterState) => {},
 };
 

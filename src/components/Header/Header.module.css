@@ -3,17 +3,22 @@
   display: flex;
   gap: 30px;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: rgb(29, 29, 39);
+  width: 100%;
 }
 
 .header_btn {
+  position: relative;
   height: 20px;
   color: white;
   font-size: 17px;
-  top: 57px;
-  right: 40px;
   cursor: pointer;
+  right: 0;
 }
 
+.header_btn:hover *,
 .header_btn:hover {
   color: rgb(197, 179, 88);
 }
@@ -23,11 +28,6 @@
   height: 20px;
   fill: white;
   color: white;
-  top: 56px;
-  right: 90px;
   cursor: pointer;
-}
-
-.icon_author:hover {
-  color: rgb(197, 179, 88);
+  margin-top: 10px;
 }

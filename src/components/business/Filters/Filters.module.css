@@ -1,5 +1,5 @@
-.filter {
-    background-color: white;
-    
+.wrapper {
+  width: 300px;
+  height: 450px;
+  background-color: white;
 }
-
