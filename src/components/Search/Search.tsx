@@ -1,6 +1,6 @@
 import styles from './Search.module.css';
 import { useState } from 'react';
-import { IFilm } from 'types/films';
+import { IFilm } from 'types/types';
 import { getFilmsByName } from 'utils/api';
 import { Film } from '../Film/Film';
 
@@ -16,7 +16,13 @@ export function Search() {
   return (
     <div className={styles.wrapper}>
       <form className={styles.form}>
-        <input value={value} className={styles.input} type="search" placeholder="Поиск по названию..." onChange={onChange}></input>
+        <input
+          value={value}
+          className={styles.input}
+          type="search"
+          placeholder="Поиск по названию..."
+          onChange={onChange}
+        ></input>
       </form>
       {value && (
         <div className={styles.popUp}>

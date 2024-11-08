@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getFilm } from '../../utils/api';
-import { IFilm } from '../../types/films';
+import { IFilm } from '../../types/types';
 
 import { FilmDescription } from 'components/FilmDescription/FilmDescription';
 import { useParams } from 'react-router-dom';

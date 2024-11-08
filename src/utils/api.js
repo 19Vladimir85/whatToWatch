@@ -51,3 +51,21 @@ export function getFilm(id) {
     .then((res) => res.json())
     .catch((error) => console.log(error));
 }
+
+export function getAllGenres() {
+  return fetch(
+    'https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name',
+    {
+      headers: { 'X-API-KEY': 'C75V1KG-XGTM7V7-GMYGZJG-WHQMG7G' },
+    }
+  ).then((res) => res.json());
+}
+
+export function getAllCounties() {
+  return fetch(
+    'https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=countries.name',
+    {
+      headers: { 'X-API-KEY': 'C75V1KG-XGTM7V7-GMYGZJG-WHQMG7G' },
+    }
+  ).then((res) => res.json());
+}

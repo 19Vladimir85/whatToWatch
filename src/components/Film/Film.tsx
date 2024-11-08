@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { IFilm, IRating } from 'types/films';
+import { IRating, IFilmProp } from 'types/types';
 import styles from './Film.module.css';
 import cx from 'clsx';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
-interface IFilmProp extends IFilm {
-  isSmall?: boolean;
-}
+// export interface IFilmProp extends IFilm {
+//   isSmall?: boolean;
+// }
 
 function getRateNumber(rate: IRating): string {
   return !rate.kp ? rate.imdb.toFixed(1) : rate.kp.toFixed(1);
@@ -23,17 +23,36 @@ function rateColor(rate: number): string {
   return styles.green;
 }
 
-export const Film: React.FC<IFilmProp> = ({ name, poster, year, rating, id, countries, genres, isSmall }) => {
+export const Film: React.FC<IFilmProp> = ({
+  name,
+  poster,
+  year,
+  rating,
+  id,
+  countries,
+  genres,
+  isSmall,
+}) => {
   const rate = getRateNumber(rating);
   return (
     <Link className={styles.wrapper} to={`/movie/${id}`}>
       <div className={styles.film}>
-        <img className={cx(styles.film__image, { [styles.film__image_small]: isSmall })} src={poster?.url || noPoster} alt="img" />
+        <img
+          className={cx(styles.film__image, {
+            [styles.film__image_small]: isSmall,
+          })}
+          src={poster?.url || noPoster}
+          alt="img"
+        />
         <div className={styles.film__card_description}>
           <div className={styles.film__card_description_name}>{name}</div>
           <div className={styles.film__card_description_item}>{year}</div>
-          <div className={styles.film__card_description_item}>{countries?.map((el) => el.name).join(', ')}</div>
-          <div className={styles.film__card_description_item}>{genres?.map((el) => el.name).join(', ')}</div>
+          <div className={styles.film__card_description_item}>
+            {countries?.map((el) => el.name).join(', ')}
+          </div>
+          <div className={styles.film__card_description_item}>
+            {genres?.map((el) => el.name).join(', ')}
+          </div>
         </div>
         <div className={styles.film__card_description_item}>
           <span className={rateColor(+rate)}>{rate}</span>

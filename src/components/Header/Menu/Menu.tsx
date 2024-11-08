@@ -1,10 +1,11 @@
 import styles from './Menu.module.css';
 import { Link } from 'react-router-dom';
+import { IMenuItem } from '../../../types/types';
 
-interface IMenuItem {
-  name: string;
-  url: string;
-}
+// export interface IMenuItem {
+//   name: string;
+//   url: string;
+// }
 
 const items: IMenuItem[] = [
   { name: 'Главная', url: '/' },

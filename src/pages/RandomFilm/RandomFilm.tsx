@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRandomFilm } from '../../utils/api';
-import { IFilm } from '../../types/films';
+import { IFilm } from '../../types/types';
 import { FilmDescription } from 'components/FilmDescription/FilmDescription';
 
 export const RandomFilm: React.FC = () => {

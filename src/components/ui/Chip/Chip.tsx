@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from './Chip.module.css';
+import { IChip } from 'types/types';
 
-interface IChip {
-  title: string;
-  checked?: boolean;
-  onClick: (item: string, checked: boolean) => void;
-}
+// export interface IChip {
+//   title: string;
+//   checked?: boolean;
+//   onClick: (item: string, checked: boolean) => void;
+// }
 
 export const Chip: React.FC<IChip> = ({ title, checked = false, onClick }) => {
   const [selected, setSelected] = useState(checked);

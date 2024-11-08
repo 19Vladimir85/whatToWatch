@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from './Rating.module.css';
 import cx from 'clsx';
+import { IRating } from 'types/types';
 
-interface IRating {
-  size?: 'small' | 'big';
-  startRating?: number;
-}
+// export interface IRating {
+//   size?: 'small' | 'big';
+//   startRating?: number;
+// }
 
 const ratings = [1, 2, 3, 4, 5];
 
