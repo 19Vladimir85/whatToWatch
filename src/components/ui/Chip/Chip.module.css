@@ -1,0 +1,20 @@
+.chips__button {
+  display: inline-block;
+  border: 1px solid black;
+  margin: 3px;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.chips__input {
+  display: none;
+}
+
+.chips input[type='checkbox']:checked + .chips__button {
+  color: white;
+  background: gray;
+}
+
+.chips {
+  display: inline-block;
+}

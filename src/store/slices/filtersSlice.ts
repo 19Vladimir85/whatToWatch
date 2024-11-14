@@ -14,7 +14,7 @@ interface IFiltersSliceState {
 const defFiltersState: IFilterState = {
   genre: [],
   country: 'Россия',
-  raiting: '5',
+  rating: '5',
 };
 
 const initialState: IFiltersSliceState = {
@@ -32,8 +32,11 @@ export const filtersSlice = createSlice({
     clearFilters: (state) => {
       state.filters = defFiltersState;
     },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
   },
 });
 
-export const { setFilters, clearFilters } = filtersSlice.actions;
+export const { setFilters, clearFilters, setLoading } = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -3,7 +3,11 @@ import cx from 'clsx';
 import { Chip } from 'components/ui/Chip/Chip';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/store';
-import { setFilters, clearFilters } from 'store/slices/filtersSlice';
+import {
+  setFilters,
+  clearFilters,
+  setLoading,
+} from 'store/slices/filtersSlice';
 import { IRange, IGenre, ICountry } from 'types/types';
 import { useEffect, useState } from 'react';
 import { getAllCounties, getAllGenres } from 'utils/api';
@@ -11,7 +15,7 @@ import { getAllCounties, getAllGenres } from 'utils/api';
 export interface IFilterState {
   genre?: string[];
   data?: IRange;
-  raiting?: string;
+  rating?: string;
   country?: string;
 }
 
@@ -29,18 +33,23 @@ export const Filters: React.FC<IFilterProps> = ({
   const [genres, setGenres] = useState<IGenre[]>([]);
   const [countries, setCountries] = useState<ICountry[]>([]);
 
-  useEffect(() => {
-    getAllGenres().then((res) => setGenres(res));
-    getAllCounties().then((res) => setCountries(res));
-  });
-
-  const filters = useSelector(
-    (state: RootState) => state.filterReducer.filters
+  const { filters, loading } = useSelector(
+    (state: RootState) => state.filterReducer
   );
   const dispatch = useDispatch();
 
-  const onGenreChange = (genre: string, isCheked: boolean) => {
-    if (isCheked) {
+  useEffect(() => {
+    dispatch(setLoading(true));
+    Promise.all([getAllGenres(), getAllCounties()])
+      .then(([genres, countries]) => {
+        setGenres(genres);
+        setCountries(countries);
+      })
+      .finally(() => dispatch(setLoading(false)));
+  }, []);
+
+  const onGenreChange = (genre: string, isChecked: boolean) => {
+    if (isChecked) {
       dispatch(setFilters({ ...filters, genre: [...filters.genre, genre] }));
     } else {
       dispatch(
@@ -57,8 +66,8 @@ export const Filters: React.FC<IFilterProps> = ({
     dispatch(setFilters({ ...filters, country: selectedCountry }));
   };
 
-  const changeRaiting = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFilters({ ...filters, raiting: event.target.value }));
+  const changeRating = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setFilters({ ...filters, rating: event.target.value }));
   };
 
   const handleChange = () => {
@@ -70,12 +79,20 @@ export const Filters: React.FC<IFilterProps> = ({
     onFilterSet(filters);
   };
 
+  if (loading) {
+    return <div>"Загрузка"</div>;
+  }
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={styles.filter__title}>Жанры</div>
       <div className={styles.filter__value}>
         {genres.map(({ name }) => (
-          <Chip title={name} key={name} onClick={onGenreChange} />
+          <Chip
+            checked={filters.genre?.includes(name)}
+            title={name}
+            key={name}
+            onClick={onGenreChange}
+          />
         ))}
       </div>
 
@@ -97,8 +114,8 @@ export const Filters: React.FC<IFilterProps> = ({
           type="range"
           min={1}
           max={10}
-          value={filters.raiting}
-          onChange={changeRaiting}
+          value={filters.rating}
+          onChange={changeRating}
         />
       </div>
       <button onClick={handleChange}>Отправить</button>
