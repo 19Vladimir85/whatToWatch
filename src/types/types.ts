@@ -3,7 +3,7 @@ export interface IPoster {
   previewUrl: string;
 }
 
-export interface IRating {
+export interface IFilmsRating {
   kp: number;
   imdb: number;
 }
@@ -29,7 +29,7 @@ export interface IFilm {
   description?: string;
   poster?: IPoster;
   year?: number;
-  rating?: IRating;
+  rating?: IFilmsRating;
   genres?: IGenre[];
   countries?: ICountry[];
   persons?: IPerson[];
@@ -39,51 +39,4 @@ export interface IFilm {
 export interface IRange {
   from?: string;
   to?: string;
-}
-
-export interface IFilmProp extends IFilm {
-  isSmall?: boolean;
-}
-
-export interface IFilmDescription {
-  film: IFilm;
-}
-
-export interface IMenuItem {
-  name: string;
-  url: string;
-}
-
-export interface IButton {
-  className?: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-  icon?: React.ReactElement;
-}
-
-export interface IChip {
-  title: string;
-  checked?: boolean;
-  onClick: (item: string, checked: boolean) => void;
-}
-
-export interface IFieldInfo {
-  name: string;
-  children: React.ReactNode;
-  className?: string;
-}
-
-export interface IFilmCarousel {
-  title: string;
-  genre: string;
-}
-
-export interface IRating {
-  size?: 'small' | 'big';
-  startRating?: number;
-}
-
-export interface IFilmsList {
-  isLoading?: boolean;
-  films: IFilm[];
 }

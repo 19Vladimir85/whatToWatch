@@ -1,6 +1,5 @@
 import Slider from 'react-slick';
 import './Carousel.css';
-
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function SampleNextArrow({ onClick }) {
@@ -31,8 +30,12 @@ export function Carousel({ children, setSlideIndex }) {
     centerPadding: '265px',
     centerMode: true,
     className: 'center',
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: (
+      <SampleNextArrow onClick={(_current, next) => setSlideIndex(next)} />
+    ),
+    prevArrow: (
+      <SamplePrevArrow onClick={(_current, next) => setSlideIndex(next)} />
+    ),
   };
 
   return (

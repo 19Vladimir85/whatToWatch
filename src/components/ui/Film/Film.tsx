@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
-import { IRating, IFilmProp } from 'types/types';
+import { IFilmsRating, IFilm } from 'types/types';
 import styles from './Film.module.css';
 import cx from 'clsx';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
-// export interface IFilmProp extends IFilm {
-//   isSmall?: boolean;
-// }
+interface IFilmProp extends IFilm {
+  isSmall?: boolean;
+}
 
-function getRateNumber(rate: IRating): string {
+function getRateNumber(rate: IFilmsRating): string {
   return !rate.kp ? rate.imdb.toFixed(1) : rate.kp.toFixed(1);
 }
 
-function getRateName(rate: IRating): string {
+function getRateName(rate: IFilmsRating): string {
   return !rate.kp ? 'IMDB' : 'KP';
 }
 

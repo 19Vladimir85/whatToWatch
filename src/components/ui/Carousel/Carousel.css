@@ -1,5 +1,5 @@
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 
 .banner_slider {
   margin-top: 15px;
@@ -18,7 +18,7 @@
 
 .banner_slide {
   opacity: 0.5;
-  transform: scale(0.7);
+  transform: scale(0.9);
   transition: 1.5s;
 }
 

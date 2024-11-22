@@ -1,5 +1,5 @@
 .header {
-  padding: 30px 15px;
+  padding: 30px 30px;
   display: flex;
   gap: 30px;
   align-items: center;
@@ -7,15 +7,16 @@
   top: 0;
   background-color: rgb(29, 29, 39);
   width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
 }
 
 .header_btn {
-  position: relative;
   height: 20px;
   color: white;
   font-size: 17px;
   cursor: pointer;
-  right: 0;
+  margin-left: auto;
 }
 
 .header_btn:hover *,

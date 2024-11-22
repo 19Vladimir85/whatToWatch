@@ -1,6 +1,11 @@
-import { IFilmsList } from 'types/types';
-import { Film } from 'components/Film/Film';
+import { IFilm } from 'types/types';
+import { Film } from 'components/ui/Film/Film';
 import styles from './FilmsList.module.css';
+
+export interface IFilmsList {
+  isLoading?: boolean;
+  films: IFilm[];
+}
 
 export const FilmsList: React.FC<IFilmsList> = ({ isLoading, films }) => {
   return isLoading ? (

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Carousel } from 'components/Carousel/Carousel';
+import { Carousel } from 'components/ui/Carousel/Carousel';
 import { getFilmsByGenres } from 'utils/api';
-import { Film } from 'components/Film/Film';
-import { IFilm, IFilmCarousel } from 'types/types';
+import { Film } from 'components/ui/Film/Film';
+import { IFilm } from 'types/types';
 import { Link } from 'react-router-dom';
 
-// export interface IFilmCarousel {
-//   title: string;
-//   genre: string;
-// }
+interface IFilmCarousel {
+  title: string;
+  genre: string;
+}
 export const FilmCarousel: React.FC<IFilmCarousel> = ({ title, genre }) => {
   const [films, setFilms] = useState<IFilm[]>([]);
 

@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import styles from './Rating.module.css';
 import cx from 'clsx';
-import { IRating } from 'types/types';
 
-// export interface IRating {
-//   size?: 'small' | 'big';
-//   startRating?: number;
-// }
+export interface IRating {
+  size?: 'small' | 'big';
+  startRating?: number;
+}
 
 const ratings = [1, 2, 3, 4, 5];
 
 export const Rating: React.FC<IRating> = ({ size = 'small', startRating }) => {
   const [rating, setRating] = useState(startRating || 0);
   const [hoverRating, setHoverRating] = useState(0);
-  console.log(rating, startRating);
   return (
     <div className={styles.rating}>
       {ratings.map((item) => (

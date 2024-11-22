@@ -1,12 +1,31 @@
-import { ICountry, IGenre, IFilmDescription } from '../../types/types';
-import { FieldInfo } from 'components/ui/FieldInfo/FieldInfo';
+import { ICountry, IGenre, IFilm } from '../../../types/types';
 import styles from './FilmDescription.module.css';
+import cx from 'clsx';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
-// export interface IFilmDescription {
-//   film: IFilm;
-// }
+export interface IFilmDescription {
+  film: IFilm;
+}
+
+interface IFieldInfo {
+  name: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const FieldInfo: React.FC<IFieldInfo> = ({
+  name,
+  children,
+  className = '',
+}) => {
+  return (
+    <div className={cx(styles.field, className)}>
+      <div className={styles.field__name}>{name}</div>
+      <div className={styles.field__info}>{children}</div>
+    </div>
+  );
+};
 
 export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
   return (

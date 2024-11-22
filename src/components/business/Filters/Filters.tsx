@@ -9,8 +9,22 @@ import {
   setLoading,
 } from 'store/slices/filtersSlice';
 import { IRange, IGenre, ICountry } from 'types/types';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { getAllCounties, getAllGenres } from 'utils/api';
+
+interface IFilterRow {
+  title: string;
+  children: ReactNode;
+}
+
+const FilterRow: React.FC<IFilterRow> = ({ title, children }) => {
+  return (
+    <>
+      <div className={styles.filter__title}>{title}</div>
+      <div className={styles.filter__value}>{children}</div>
+    </>
+  );
+};
 
 export interface IFilterState {
   genre?: string[];
@@ -80,12 +94,11 @@ export const Filters: React.FC<IFilterProps> = ({
   };
 
   if (loading) {
-    return <div>"Загрузка"</div>;
+    return <div className={cx(styles.wrapper, className)}>Загрузка</div>;
   }
   return (
     <div className={cx(styles.wrapper, className)}>
-      <div className={styles.filter__title}>Жанры</div>
-      <div className={styles.filter__value}>
+      <FilterRow title="Жанры">
         {genres.map(({ name }) => (
           <Chip
             checked={filters.genre?.includes(name)}
@@ -94,10 +107,9 @@ export const Filters: React.FC<IFilterProps> = ({
             onClick={onGenreChange}
           />
         ))}
-      </div>
+      </FilterRow>
 
-      <div className={styles.filter__title}>Страна</div>
-      <div className={styles.filter__value}>
+      <FilterRow title="Страна">
         <select value={filters.country} onChange={onCountryChange}>
           <option value="">Выберите страну</option>
           {countries.map(({ name }) => (
@@ -106,10 +118,9 @@ export const Filters: React.FC<IFilterProps> = ({
             </option>
           ))}
         </select>
-      </div>
+      </FilterRow>
 
-      <div className={styles.filter__title}>Рейтинг</div>
-      <div className={styles.filter__value}>
+      <FilterRow title="Рейтинг">
         <input
           type="range"
           min={1}
@@ -117,7 +128,7 @@ export const Filters: React.FC<IFilterProps> = ({
           value={filters.rating}
           onChange={changeRating}
         />
-      </div>
+      </FilterRow>
       <button onClick={handleChange}>Отправить</button>
       <button onClick={handleReset}>Сбросить</button>
     </div>

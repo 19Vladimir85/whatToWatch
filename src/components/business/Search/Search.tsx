@@ -2,20 +2,28 @@ import styles from './Search.module.css';
 import { useState } from 'react';
 import { IFilm } from 'types/types';
 import { getFilmsByName } from 'utils/api';
-import { Film } from '../Film/Film';
+import { Film } from '../../ui/Film/Film';
 
 export function Search() {
   const [value, setValue] = useState<string>('');
   const [films, setFilms] = useState<IFilm[]>([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
+
+    setIsPopupOpen(event.target.value.length > 0);
     getFilmsByName(event.target.value).then((res: IFilm[]) => setFilms(res));
+  };
+
+  const handleBlur = () => {
+    setIsPopupOpen(false);
+    setValue('');
   };
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.form}>
+      <form onBlur={handleBlur} className={styles.form}>
         <input
           value={value}
           className={styles.input}
@@ -24,7 +32,7 @@ export function Search() {
           onChange={onChange}
         ></input>
       </form>
-      {value && (
+      {isPopupOpen && (
         <div className={styles.popUp}>
           {films.map((film) => (
             <Film {...film} isSmall />

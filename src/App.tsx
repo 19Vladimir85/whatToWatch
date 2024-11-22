@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
-import { Header } from './components/Header/Header';
+import { Header } from './components/business/Header/Header';
 import { MainPage } from 'pages/MainPage/MainPage';
 import { AboutFilm } from 'pages/AboutFilm/AboutFilm';
 import { RandomFilm } from 'pages/RandomFilm/RandomFilm';

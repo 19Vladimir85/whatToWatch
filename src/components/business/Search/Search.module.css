@@ -32,12 +32,11 @@
   color: black;
 }
 
-
 .wrapper {
-position: relative;
+  position: relative;
 }
 
-.popUp{
+.popUp {
   position: absolute;
   z-index: 1000;
   top: 35px;
