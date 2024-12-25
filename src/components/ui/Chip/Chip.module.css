@@ -1,9 +1,22 @@
 .chips__button {
   display: inline-block;
-  border: 1px solid black;
+  border: 2px solid gray;
   margin: 3px;
   padding: 3px;
   border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.chips__button:hover {
+  color: rgb(29, 29, 39);
+  border: 2px solid rgb(29, 29, 39);
+  background-color: rgb(239, 237, 237);
+}
+
+.chips__button:active {
+  background-color: rgb(70, 70, 98);
+  color: gold;
 }
 
 .chips__input {

@@ -40,3 +40,9 @@ export interface IRange {
   from?: string;
   to?: string;
 }
+
+export interface IComment {
+  autor: string;
+  data: Date;
+  content: string;
+}

@@ -11,14 +11,14 @@ interface IFiltersSliceState {
   loading: boolean;
 }
 
-const defFiltersState: IFilterState = {
+const initialFilters: IFilterState = {
   genre: [],
   country: 'Россия',
   rating: '5',
 };
 
 const initialState: IFiltersSliceState = {
-  filters: defFiltersState,
+  filters: initialFilters,
   loading: false,
 };
 
@@ -30,7 +30,7 @@ export const filtersSlice = createSlice({
       state.filters = action.payload;
     },
     clearFilters: (state) => {
-      state.filters = defFiltersState;
+      state.filters = initialFilters;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -38,5 +38,5 @@ export const filtersSlice = createSlice({
   },
 });
 
+export const filterReducer = filtersSlice.reducer;
 export const { setFilters, clearFilters, setLoading } = filtersSlice.actions;
-export default filtersSlice.reducer;

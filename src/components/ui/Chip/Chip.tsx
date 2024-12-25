@@ -5,9 +5,15 @@ interface IChip {
   title: string;
   checked?: boolean;
   onClick: (item: string, checked: boolean) => void;
+  className?: string;
 }
 
-export const Chip: React.FC<IChip> = ({ title, checked = false, onClick }) => {
+export const Chip: React.FC<IChip> = ({
+  title,
+  checked = false,
+  onClick,
+  className,
+}) => {
   const [selected, setSelected] = useState(checked);
 
   useEffect(() => {
@@ -20,7 +26,7 @@ export const Chip: React.FC<IChip> = ({ title, checked = false, onClick }) => {
   };
 
   return (
-    <div className={styles.chips}>
+    <div className={className}>
       <input
         className={styles.chips__input}
         id={title}

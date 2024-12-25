@@ -1,4 +1,16 @@
-.star_button {
+.starRating {
+  display: flex;
+}
+
+.starsInput {
+  display: none;
+}
+
+.starItem {
+  cursor: pointer;
+}
+
+/* .star_button {
   background-color: transparent;
   border: none;
 }
@@ -20,4 +32,4 @@
 .star_big {
   height: 30px;
   width: 30px;
-}
+} */
