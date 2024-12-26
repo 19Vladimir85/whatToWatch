@@ -7,7 +7,13 @@ interface ICommentPayload {
   comment: IComment;
 }
 
-type CommentSlice = Record<number, IComment[]>;
+interface ICommentDelete {
+  moveId: number;
+  commentId: number;
+  isLike?: boolean;
+}
+
+type CommentSlice = Record<number, IComment[]>; // Record тип для описания объекта ( number - ключ, IComment[] - значение)
 
 const initialState: CommentSlice = {};
 
@@ -16,17 +22,26 @@ const commentSlice = createSlice({
   initialState,
   reducers: {
     setComment: (state, action: PayloadAction<ICommentPayload>) => {
-      if (state[action.payload.moveId]) {
-        state[action.payload.moveId] = [
-          ...state[action.payload.moveId],
-          action.payload.comment,
-        ];
+      const { moveId, comment } = action.payload;
+      if (state[moveId]) {
+        state[moveId] = [...state[moveId], comment];
       } else {
-        state[action.payload.moveId] = [action.payload.comment];
+        state[moveId] = [comment];
       }
+    },
+    deleteComment: (state, action: PayloadAction<ICommentDelete>) => {
+      state[action.payload.moveId].splice(action.payload.commentId, 1);
+    },
+    setLike: (state, action: PayloadAction<ICommentDelete>) => {
+      const { moveId, isLike, commentId } = action.payload;
+      state[moveId][commentId].isLike = isLike;
     },
   },
 });
 
 export const commentReducer = commentSlice.reducer;
-export const { setComment } = commentSlice.actions;
+export const { setComment, deleteComment, setLike } = commentSlice.actions;
+
+// {
+//   moveId: [{}, {}];
+// }

@@ -45,4 +45,5 @@ export interface IComment {
   autor: string;
   data: Date;
   content: string;
+  isLike?: boolean;
 }

@@ -1,2 +1,14 @@
 .comment_field {
 }
+
+.like {
+  height: 10px;
+  width: 10px;
+  border: 1px solid white;
+  background-color: red;
+}
+.disLike {
+  height: 10px;
+  width: 10px;
+  border: 1px solid white;
+}
