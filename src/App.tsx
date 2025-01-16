@@ -4,6 +4,7 @@ import { Header } from './components/business/Header/Header';
 import { MainPage } from 'pages/MainPage/MainPage';
 import { AboutFilm } from 'pages/AboutFilm/AboutFilm';
 import { RandomFilm } from 'pages/RandomFilm/RandomFilm';
+import { FavouriteFilms } from 'pages/FavouriteFilms/FavouriteFilms';
 import { AllFilms } from 'pages/AllFilms/AllFilms';
 import { Snow } from 'components/business/Snow/Snow';
 import { useSelector, useDispatch } from 'react-redux';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/movie/random" element={<RandomFilm />} />
         <Route path="/movie/:filmId" element={<AboutFilm />} />
         <Route path="/movie" element={<AllFilms />} />
+        <Route path="/favourite" element={<FavouriteFilms />} />
       </Routes>
     </div>
   );

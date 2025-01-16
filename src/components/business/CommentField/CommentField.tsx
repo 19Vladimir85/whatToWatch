@@ -3,11 +3,17 @@ import { IComment } from 'types/types';
 import styles from './CommentField.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { setComment, deleteComment, setLike } from 'store/slices/commentSlice';
+import {
+  setComment,
+  deleteComment,
+  setLike,
+  editComment,
+} from 'store/slices/commentSlice';
 
 interface ICommentComponent extends IComment {
   onClick: () => void;
   onSetLike: () => void;
+  onEditComment: (text) => void;
 }
 
 const Comment: React.FC<ICommentComponent> = ({
@@ -17,7 +23,15 @@ const Comment: React.FC<ICommentComponent> = ({
   isLike,
   onClick,
   onSetLike,
+  onEditComment,
 }) => {
+  const [openTextArea, setOpenTextArea] = useState(false);
+  const [text, setText] = useState(content);
+
+  const handleOpen = () => {
+    setOpenTextArea(true);
+  };
+
   return (
     <div className={styles.comment}>
       <div className={styles.comment_auth}>{autor}</div>
@@ -30,6 +44,28 @@ const Comment: React.FC<ICommentComponent> = ({
       <button className={styles.comment_button} onClick={onClick}>
         Удалить
       </button>
+      <button className={styles.comment_button} onClick={handleOpen}>
+        Редактировать
+      </button>
+      {openTextArea && (
+        <>
+          <label>
+            <textarea
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+            />
+          </label>
+          <button
+            className={styles.comment_button}
+            onClick={() => {
+              onEditComment(text);
+              setOpenTextArea(false);
+            }}
+          >
+            Отправить
+          </button>
+        </>
+      )}
     </div>
   );
 };
@@ -50,6 +86,7 @@ export const CommentField: React.FC<ICommentField> = ({ id }) => {
         comment: { autor: user || 'аноним', data: new Date(), content: text },
       })
     );
+    setText('');
   };
 
   const handleDeleteComment = (commentId: number) => {
@@ -71,6 +108,16 @@ export const CommentField: React.FC<ICommentField> = ({ id }) => {
     );
   };
 
+  const handleEditComment = (commentId: number, newContent: string) => {
+    dispatch(
+      editComment({
+        moveId: id,
+        commentId,
+        newContent,
+      })
+    );
+  };
+
   return (
     <div className={styles.comment_field}>
       <h4 className={styles.comment_name}>Оставьте ваш комментарий</h4>
@@ -87,6 +134,7 @@ export const CommentField: React.FC<ICommentField> = ({ id }) => {
         <Comment
           onSetLike={() => handleLike(index, !comment.isLike)}
           onClick={() => handleDeleteComment(index)}
+          onEditComment={(newContent) => handleEditComment(index, newContent)}
           {...comment}
         />
       ))}

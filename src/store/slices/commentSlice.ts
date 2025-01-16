@@ -13,6 +13,12 @@ interface ICommentDelete {
   isLike?: boolean;
 }
 
+interface ICommentEdit {
+  moveId: number;
+  commentId: number;
+  newContent: string;
+}
+
 type CommentSlice = Record<number, IComment[]>; // Record тип для описания объекта ( number - ключ, IComment[] - значение)
 
 const initialState: CommentSlice = {};
@@ -36,12 +42,17 @@ const commentSlice = createSlice({
       const { moveId, isLike, commentId } = action.payload;
       state[moveId][commentId].isLike = isLike;
     },
+    editComment: (state, action: PayloadAction<ICommentEdit>) => {
+      const { moveId, commentId, newContent } = action.payload;
+      state[moveId][commentId].content = newContent;
+    },
   },
 });
 
 export const commentReducer = commentSlice.reducer;
-export const { setComment, deleteComment, setLike } = commentSlice.actions;
+export const { setComment, deleteComment, setLike, editComment } =
+  commentSlice.actions;
 
 // {
-//   moveId: [{}, {}];
+//   3466: [{}, {}];
 // }

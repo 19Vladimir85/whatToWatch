@@ -58,6 +58,10 @@ export const Film: React.FC<IFilmProp> = ({
           <span className={rateColor(+rate)}>{rate}</span>
           {getRateName(rating)}
         </div>
+        <div
+          className={isLike ? styles.like : styles.disLike}
+          onClick={onSetLike}
+        ></div>
       </div>
     </Link>
   );

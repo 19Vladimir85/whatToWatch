@@ -1,10 +1,6 @@
 import { ICountry, IGenre, IFilm } from '../../../types/types';
 import styles from './FilmDescription.module.css';
 import cx from 'clsx';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'store/store';
-import { setComment } from 'store/slices/commentSlice';
 import { CommentField } from 'components/business/CommentField/CommentField';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
@@ -33,12 +29,6 @@ const FieldInfo: React.FC<IFieldInfo> = ({
 };
 
 export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
-  const [text, setText] = useState('');
-  const dispatch = useDispatch();
-  const comments = useSelector((state: RootState) => state.commentReducer);
-
-  const addComment = () => {};
-
   return (
     <>
       <div className={styles.film}>
@@ -57,6 +47,10 @@ export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
           <FieldInfo name="Жанр">
             {film.genres?.map((el: IGenre) => el.name)}
           </FieldInfo>
+          <div
+            className={isLike ? styles.like : styles.disLike}
+            onClick={onSetLike}
+          ></div>
         </div>
       </div>
       <CommentField id={film.id} />

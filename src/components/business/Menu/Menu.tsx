@@ -10,6 +10,7 @@ const items: IMenuItem[] = [
   { name: 'Главная', url: '/' },
   { name: 'Фильмы', url: '/movie' },
   { name: 'Случайный фильм', url: '/movie/random' },
+  { name: 'Любимые фильмы', url: '/favourite' },
 ];
 
 export function Menu() {
