@@ -5,23 +5,17 @@
   align-items: center;
   position: sticky;
   top: 0;
-  background-color: rgb(29, 29, 39);
   width: 100%;
   box-sizing: border-box;
   z-index: 100;
 }
 
-.snowfall {
+.theme {
   display: flex;
   gap: 10px;
   align-items: center;
   top: 0;
-}
-
-.snowfallText {
-  color: white;
   font-size: 17px;
-  margin-left: auto;
 }
 
 .snowfallSwitch {
@@ -29,7 +23,6 @@
 }
 
 .header_btn {
-  color: white;
   font-size: 17px;
   cursor: pointer;
   margin-left: auto;
@@ -41,8 +34,8 @@
 }
 
 .icon_author {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   fill: white;
   color: white;
   cursor: pointer;

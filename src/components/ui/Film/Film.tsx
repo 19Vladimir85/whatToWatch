@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { IFilmsRating, IFilm } from 'types/types';
 import styles from './Film.module.css';
 import cx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { addFilm, deleteFilm } from 'store/slices/favoriteSlice';
+import { LikeButton } from '../LikeButton/LikeButton';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
@@ -34,6 +38,18 @@ export const Film: React.FC<IFilmProp> = ({
   isSmall,
 }) => {
   const rate = getRateNumber(rating);
+  const dispatch = useDispatch();
+  const films = useSelector((state: RootState) => state.favoriteReducer);
+  const isLike = films.some((el) => el.id === id);
+
+  const onSetLike = () => {
+    if (isLike) {
+      dispatch(deleteFilm(id));
+    } else {
+      dispatch(addFilm({ name, poster, year, rating, id, countries, genres }));
+    }
+  };
+
   return (
     <Link className={styles.wrapper} to={`/movie/${id}`}>
       <div className={styles.film}>
@@ -53,15 +69,17 @@ export const Film: React.FC<IFilmProp> = ({
           <div className={styles.film__card_description_item}>
             {genres?.map((el) => el.name).join(', ')}
           </div>
+          <LikeButton isLike={isLike} setLike={onSetLike} />
+          <div className={styles.film__card_description_item}>
+            <span className={rateColor(+rate)}>{rate}</span>
+            {getRateName(rating)}
+          </div>
         </div>
-        <div className={styles.film__card_description_item}>
+
+        {/* <div className={styles.film__card_description_item}>
           <span className={rateColor(+rate)}>{rate}</span>
           {getRateName(rating)}
-        </div>
-        <div
-          className={isLike ? styles.like : styles.disLike}
-          onClick={onSetLike}
-        ></div>
+        </div> */}
       </div>
     </Link>
   );

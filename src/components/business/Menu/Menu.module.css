@@ -19,11 +19,11 @@
 }
 
 .text {
-  color: white;
-  font-size: 17px;
   text-decoration: none;
+  font-size: 17px;
 }
 
-.text:hover {
+.text:hover,
+.isActive {
   color: rgb(197, 179, 88);
 }

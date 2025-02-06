@@ -9,6 +9,7 @@ import {
   setLike,
   editComment,
 } from 'store/slices/commentSlice';
+import { LikeButton } from 'components/ui/LikeButton/LikeButton';
 
 interface ICommentComponent extends IComment {
   onClick: () => void;
@@ -37,10 +38,7 @@ const Comment: React.FC<ICommentComponent> = ({
       <div className={styles.comment_auth}>{autor}</div>
       <div className={styles.comment_data}>{data.toString()}</div>
       <div className={styles.comment_content}>{content}</div>
-      <div
-        className={isLike ? styles.like : styles.disLike}
-        onClick={onSetLike}
-      ></div>
+      <LikeButton isLike={isLike} setLike={onSetLike} />
       <button className={styles.comment_button} onClick={onClick}>
         Удалить
       </button>

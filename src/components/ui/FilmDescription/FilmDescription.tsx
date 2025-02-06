@@ -2,6 +2,10 @@ import { ICountry, IGenre, IFilm } from '../../../types/types';
 import styles from './FilmDescription.module.css';
 import cx from 'clsx';
 import { CommentField } from 'components/business/CommentField/CommentField';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { addFilm, deleteFilm } from 'store/slices/favoriteSlice';
+import { LikeButton } from '../LikeButton/LikeButton';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
@@ -29,6 +33,18 @@ const FieldInfo: React.FC<IFieldInfo> = ({
 };
 
 export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
+  const dispatch = useDispatch();
+  const films = useSelector((state: RootState) => state.favoriteReducer);
+  const isLike = films.some((el) => el.id === film.id);
+
+  const onSetLike = () => {
+    if (isLike) {
+      dispatch(deleteFilm(film.id));
+    } else {
+      dispatch(addFilm(film));
+    }
+  };
+
   return (
     <>
       <div className={styles.film}>
@@ -47,10 +63,7 @@ export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
           <FieldInfo name="Жанр">
             {film.genres?.map((el: IGenre) => el.name)}
           </FieldInfo>
-          <div
-            className={isLike ? styles.like : styles.disLike}
-            onClick={onSetLike}
-          ></div>
+          <LikeButton isLike={isLike} setLike={onSetLike} />
         </div>
       </div>
       <CommentField id={film.id} />

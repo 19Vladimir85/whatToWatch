@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IFilm } from 'types/types';
 import { getFilmsByName } from 'utils/api';
 import { Film } from '../../ui/Film/Film';
+import { resetWarned } from 'antd/es/_util/warning';
 
 export function Search() {
   const [value, setValue] = useState<string>('');
@@ -13,7 +14,10 @@ export function Search() {
     setValue(event.target.value);
 
     setIsPopupOpen(event.target.value.length > 0);
-    getFilmsByName(event.target.value).then((res: IFilm[]) => setFilms(res));
+    getFilmsByName(event.target.value).then((res: IFilm[]) => {
+      setFilms(res);
+      console.log(res);
+    });
   };
 
   const handleBlur = () => {
