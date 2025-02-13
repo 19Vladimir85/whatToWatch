@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import styles from './Chip.module.css';
+import cn from 'clsx';
 
 interface IChip {
   title: string;
@@ -14,27 +14,23 @@ export const Chip: React.FC<IChip> = ({
   onClick,
   className,
 }) => {
-  const [selected, setSelected] = useState(checked);
-
-  useEffect(() => {
-    setSelected(checked);
-  }, [checked]);
-
   const handleChange = (event) => {
-    setSelected(event.target.checked);
     onClick(title, event.target.checked);
   };
 
   return (
-    <div className={className}>
+    <div className={styles.chips}>
       <input
         className={styles.chips__input}
         id={title}
         type="checkbox"
-        checked={selected}
+        checked={checked}
         onChange={handleChange}
       />
-      <label className={styles.chips__button} htmlFor={title}>
+      <label
+        className={cn(styles.chips__button, { [styles.isChecked]: checked })}
+        htmlFor={title}
+      >
         {title}
       </label>
     </div>

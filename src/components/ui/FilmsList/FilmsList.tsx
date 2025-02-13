@@ -13,7 +13,7 @@ export const FilmsList: React.FC<IFilmsList> = ({ isLoading, films }) => {
   ) : (
     <div className={styles.wrapper}>
       {films?.map((item) => (
-        <Film key={item.id} {...item} />
+        <Film className={styles.film} key={item.id} {...item} />
       ))}
     </div>
   );

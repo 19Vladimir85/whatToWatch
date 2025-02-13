@@ -1,4 +1,11 @@
 .wrapper {
   overflow-y: scroll;
   height: 600px;
+  width: 800px;
+}
+
+.film {
+  display: flex;
+  gap: 50px;
+  margin: 0px 35px 35px 35px;
 }

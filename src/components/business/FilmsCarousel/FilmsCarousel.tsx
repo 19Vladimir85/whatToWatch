@@ -8,7 +8,6 @@ import styles from './FilmsCarousel.module.css';
 import classNames from 'classnames';
 import { RootState } from 'store/store';
 import { useSelector } from 'react-redux';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 interface IFilmCarousel {
   title: string;
@@ -40,14 +39,14 @@ export const FilmCarousel: React.FC<IFilmCarousel> = ({ title, genre }) => {
           slidesToScroll: 5,
           autoplay: true,
           autoplaySpeed: 4000,
-          centerPadding: '487px',
+          centerPadding: '587px',
           centerMode: true,
           className: 'center',
         }}
         setSlideIndex={() => {}}
       >
         {films?.map((item) => (
-          <Film key={item.id} {...item} />
+          <Film className={styles.film} key={item.id} {...item} />
         ))}
       </Carousel>
     </div>

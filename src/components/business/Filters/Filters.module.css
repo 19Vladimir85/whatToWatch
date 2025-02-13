@@ -1,5 +1,12 @@
 .wrapper {
-  width: 350px;
-  height: 630px;
-  background-color: white;
+  max-width: 350px;
+  background-color: rgb(136, 134, 134);
+  padding-left: 10px;
+  border-radius: 3px;
+}
+
+.filter__value {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }

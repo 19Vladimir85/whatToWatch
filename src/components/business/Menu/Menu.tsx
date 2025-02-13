@@ -1,5 +1,4 @@
 import styles from './Menu.module.css';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import classNames from 'classnames';

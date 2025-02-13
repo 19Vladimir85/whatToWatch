@@ -6,3 +6,10 @@
 .wrapper {
   margin-top: 30px;
 }
+
+.film {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 25px;
+}

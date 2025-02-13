@@ -24,7 +24,7 @@ export function getFilmsByFilters(value): Promise<IFilm[]> {
 }
 
 export function getRandomFilm(): Promise<IFilm> {
-  return fetch(`${URL}/movie/random?raiting.kp=7`, {
+  return fetch(`${URL}/movie/random?rating.kp=7`, {
     headers,
   })
     .then((res) => res.json())

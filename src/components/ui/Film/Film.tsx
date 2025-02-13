@@ -11,23 +11,25 @@ const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
 interface IFilmProp extends IFilm {
   isSmall?: boolean;
+  className?: string;
 }
 
 function getRateNumber(rate: IFilmsRating): string {
   return !rate.kp ? rate.imdb.toFixed(1) : rate.kp.toFixed(1);
 }
 
-function getRateName(rate: IFilmsRating): string {
+export function getRateName(rate: IFilmsRating): string {
   return !rate.kp ? 'IMDB' : 'KP';
 }
 
-function rateColor(rate: number): string {
+export function rateColor(rate: number): string {
   if (rate <= 3) return styles.red;
   if (rate > 3 && rate < 6) return styles.grey;
   return styles.green;
 }
 
 export const Film: React.FC<IFilmProp> = ({
+  className,
   name,
   poster,
   year,
@@ -52,7 +54,7 @@ export const Film: React.FC<IFilmProp> = ({
 
   return (
     <Link className={styles.wrapper} to={`/movie/${id}`}>
-      <div className={styles.film}>
+      <div className={className}>
         <img
           className={cx(styles.film__image, {
             [styles.film__image_small]: isSmall,
@@ -70,16 +72,12 @@ export const Film: React.FC<IFilmProp> = ({
             {genres?.map((el) => el.name).join(', ')}
           </div>
           <LikeButton isLike={isLike} setLike={onSetLike} />
-          <div className={styles.film__card_description_item}>
-            <span className={rateColor(+rate)}>{rate}</span>
-            {getRateName(rating)}
-          </div>
         </div>
 
-        {/* <div className={styles.film__card_description_item}>
+        <div className={styles.film__card_description_item}>
           <span className={rateColor(+rate)}>{rate}</span>
           {getRateName(rating)}
-        </div> */}
+        </div>
       </div>
     </Link>
   );
