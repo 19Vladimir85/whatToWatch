@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setFilters } from 'store/slices/filtersSlice';
 import { useFormatUrl } from 'hooks/useFormatUrl';
 import { useParseUrlParams } from 'hooks/useParseUrlParams';
+import { PaginatedItems } from '../../components/ui/Pagination/Pagination.js';
 export const AllFilms: React.FC = () => {
   const [films, setFilms] = useState([]);
   // const navigate = useNavigate();
@@ -72,6 +73,7 @@ export const AllFilms: React.FC = () => {
     <div className={styles.wrapper}>
       <Filters className={styles.filters} onFilterSet={() => {}} />
       <FilmsList films={films} />
+      <PaginatedItems itemsPerPage={1000} />
     </div>
   );
 };

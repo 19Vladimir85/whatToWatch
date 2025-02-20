@@ -9,18 +9,22 @@ import { IFilterState } from 'components/business/Filters/Filters';
 interface IFiltersSliceState {
   filters: IFilterState;
   loading: boolean;
+  page: Page;
 }
 
 const initialFilters: IFilterState = {
   genre: [],
-  country: 'Россия',
+  country: '',
   rating: '5',
 };
 
 const initialState: IFiltersSliceState = {
   filters: initialFilters,
   loading: false,
+  page: '1',
 };
+
+type Page = string | number;
 
 export const filtersSlice = createSlice({
   name: 'filter',
@@ -35,8 +39,12 @@ export const filtersSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    setPage: (state, action: PayloadAction<Page>) => {
+      state.page = action.payload;
+    },
   },
 });
 
 export const filterReducer = filtersSlice.reducer;
-export const { setFilters, clearFilters, setLoading } = filtersSlice.actions;
+export const { setFilters, clearFilters, setLoading, setPage } =
+  filtersSlice.actions;

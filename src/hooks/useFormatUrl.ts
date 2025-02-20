@@ -4,18 +4,23 @@ import { RootState } from 'store/store';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useFormatUrl = () => {
-  const { filters } = useSelector((state: RootState) => state.filterReducer);
+  const { filters, page } = useSelector(
+    (state: RootState) => state.filterReducer
+  );
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    ['genres.name', 'rating.kp', 'countries.name'].forEach((el) =>
+    ['genres.name', 'rating.kp', 'countries.name', 'page'].forEach((el) =>
       searchParams.delete(el)
     );
-    console.log(filters);
+
+    searchParams.append('page', page.toString());
+
+    console.log(filters, page);
 
     for (let key in filters) {
-      if (key === 'genre') {
+      if (key === 'genre' && filters.genre?.length > 0) {
         searchParams.append(
           'genres.name',
           filters.genre.join(',').toLowerCase()
@@ -30,5 +35,5 @@ export const useFormatUrl = () => {
     }
     const newUrl = searchParams.toString();
     navigate({ search: newUrl }, { replace: true });
-  }, [filters]);
+  }, [filters, page]);
 };

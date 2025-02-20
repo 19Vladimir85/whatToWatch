@@ -15,7 +15,7 @@ export function getFilmsByGenres(value): Promise<IFilm[]> {
 }
 
 export function getFilmsByFilters(value): Promise<IFilm[]> {
-  return fetch(`${URL}/movie?${value}&limit=100`, {
+  return fetch(`${URL}/movie?${value}`, {
     headers,
   })
     .then((res) => res.json())

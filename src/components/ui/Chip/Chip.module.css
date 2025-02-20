@@ -1,21 +1,19 @@
 .chips__button {
-  display: inline-block;
   border: 2px solid rgb(111, 110, 110);
-  margin: 3px;
-  padding: 3px;
-  border-radius: 10px;
+  padding: 3px 12px;
+  border-radius: 16px;
   cursor: pointer;
   font-size: 15px;
+  background: gray;
+  height: 20px;
 }
 
 .chips {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  margin: 2px;
   color: white;
-  background: gray;
+  height: 30px;
 }
 
 .chips__button:hover {

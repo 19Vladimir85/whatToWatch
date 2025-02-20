@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { setFilters } from 'store/slices/filtersSlice';
+import { setFilters, setPage } from 'store/slices/filtersSlice';
 
 export const useParseUrlParams = () => {
   const location = useLocation();
@@ -14,6 +14,8 @@ export const useParseUrlParams = () => {
       rating: searchParams.get('rating.kp')?.split('-')[0],
       country: searchParams.get('countries.name'),
     };
+    const pageParams = searchParams.get('page');
+    dispatch(setPage(pageParams));
     dispatch(setFilters(params));
   }, []);
 };
