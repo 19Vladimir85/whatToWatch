@@ -14,10 +14,9 @@ export const useFormatUrl = () => {
     ['genres.name', 'rating.kp', 'countries.name', 'page'].forEach((el) =>
       searchParams.delete(el)
     );
-
-    searchParams.append('page', page.toString());
-
-    console.log(filters, page);
+    if (page) {
+      searchParams.append('page', page.toString());
+    }
 
     for (let key in filters) {
       if (key === 'genre' && filters.genre?.length > 0) {

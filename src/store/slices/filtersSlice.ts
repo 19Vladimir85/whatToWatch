@@ -16,6 +16,7 @@ const initialFilters: IFilterState = {
   genre: [],
   country: '',
   rating: '5',
+  // filmsAmount: 10,
 };
 
 const initialState: IFiltersSliceState = {

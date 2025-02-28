@@ -16,10 +16,11 @@ export interface ICountry {
   name: string;
 }
 
-interface IPerson {
+export interface IPerson {
   id: number;
   photo: string;
   name: string;
+  profession: string;
 }
 
 export interface IFilm {

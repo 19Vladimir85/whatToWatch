@@ -1,0 +1,12 @@
+.paginate {
+  display: flex;
+  list-style: none;
+  font-size: 18px;
+  gap: 10px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.active_Page {
+  color: rgb(197, 179, 88);
+}

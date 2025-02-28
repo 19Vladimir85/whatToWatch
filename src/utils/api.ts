@@ -2,7 +2,8 @@ import { IGenre, IFilm, ICountry } from 'types/types';
 
 const URL = 'https://api.kinopoisk.dev/v1';
 const headers = {
-  'X-API-KEY': 'C75V1KG-XGTM7V7-GMYGZJG-WHQMG7G',
+  'X-API-KEY': 'YMX184S-JH0411P-QWZT421-QQDJ9QG',
+  // 'X-API-KEY': 'C75V1KG-XGTM7V7-GMYGZJG-WHQMG7G',
 };
 
 export function getFilmsByGenres(value): Promise<IFilm[]> {

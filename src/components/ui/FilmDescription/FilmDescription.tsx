@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { addFilm, deleteFilm } from 'store/slices/favoriteSlice';
 import { LikeButton } from '../LikeButton/LikeButton';
+import { PersonList } from '../PersonList/PersonList';
 
 const noPoster = `${process.env.PUBLIC_URL}/images/noposter.jpg`;
 
@@ -64,6 +65,11 @@ export const FilmDescription: React.FC<IFilmDescription> = ({ film }) => {
             {film.genres?.map((el: IGenre) => el.name)}
           </FieldInfo>
           <LikeButton isLike={isLike} setLike={onSetLike} />
+          <PersonList
+            title="В главных ролях"
+            showPersonsCount={5}
+            personList={film.persons || []}
+          />
         </div>
       </div>
       <CommentField id={film.id} />
