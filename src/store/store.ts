@@ -4,7 +4,6 @@ import { themeReducer } from './slices/themeSlice';
 import { authReducer } from './slices/authSlice';
 import { commentReducer } from './slices/commentSlice';
 import { favoriteReducer } from './slices/favoriteSlice';
-import { pagesReducer } from './slices/pagesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +12,6 @@ export const store = configureStore({
     authReducer,
     commentReducer,
     favoriteReducer,
-    pagesReducer,
   },
 });
 

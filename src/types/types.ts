@@ -35,6 +35,7 @@ export interface IFilm {
   countries?: ICountry[];
   persons?: IPerson[];
   id: number;
+  total?: number;
 }
 
 export interface IRange {

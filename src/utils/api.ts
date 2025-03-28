@@ -4,10 +4,12 @@ const URL = 'https://api.kinopoisk.dev/v1';
 const headers = {
   'X-API-KEY': 'YMX184S-JH0411P-QWZT421-QQDJ9QG',
   // 'X-API-KEY': 'C75V1KG-XGTM7V7-GMYGZJG-WHQMG7G',
+  // 'YMX184S-JH0411P-QWZT421-QQDJ9QG'
 };
 
 export function getFilmsByGenres(value): Promise<IFilm[]> {
-  return fetch(`${URL}/movie?genres.name=${value}`, {
+  const randomNum = Math.round(Math.random() * (1 - 50)) + 50;
+  return fetch(`${URL}/movie?genres.name=${value}&limit=10&page=${randomNum}`, {
     headers,
   })
     .then((res) => res.json())
@@ -15,13 +17,17 @@ export function getFilmsByGenres(value): Promise<IFilm[]> {
     .catch((error) => console.log(error));
 }
 
-export function getFilmsByFilters(value): Promise<IFilm[]> {
-  return fetch(`${URL}/movie?${value}`, {
-    headers,
-  })
+export function getFilmsByFilters(value) {
+  return fetch(`${URL}/movie${value}`, { headers })
     .then((res) => res.json())
-    .then((res) => res.docs)
-    .catch((error) => console.log(error));
+    .then((res) => ({
+      films: res.docs,
+      total: res.total,
+    }))
+    .catch((error) => {
+      console.error('Ошибка загрузки фильмов:', error);
+      return { films: [], total: 0 };
+    });
 }
 
 export function getRandomFilm(): Promise<IFilm> {
@@ -42,7 +48,7 @@ export function getAllFilms(): Promise<IFilm[]> {
 }
 
 export function getFilmsByName(value): Promise<IFilm[]> {
-  return fetch(`${URL}/movie/search?query=${value}`, {
+  return fetch(`https://api.kinopoisk.dev/v1.4/movie/search?query=${value}`, {
     headers,
   })
     .then((res) => res.json())

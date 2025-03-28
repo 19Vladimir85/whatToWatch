@@ -38,7 +38,7 @@ export function Search() {
       </form>
       {isPopupOpen && (
         <div className={styles.popUp}>
-          {films.map((film) => (
+          {films?.map((film) => (
             <Film {...film} isSmall />
           ))}
         </div>

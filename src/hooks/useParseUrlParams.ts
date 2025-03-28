@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { setFilters, setPage } from 'store/slices/filtersSlice';
+import { setFilters, setPage, setFilmsOnPage } from 'store/slices/filtersSlice';
 
 export const useParseUrlParams = () => {
   const location = useLocation();
@@ -15,7 +15,9 @@ export const useParseUrlParams = () => {
       country: searchParams.get('countries.name'),
     };
     const pageParams = searchParams.get('page');
+    const filmsOnPageParams = searchParams.get('limit');
     dispatch(setPage(pageParams));
     dispatch(setFilters(params));
+    dispatch(setFilmsOnPage(+filmsOnPageParams || 10));
   }, []);
 };

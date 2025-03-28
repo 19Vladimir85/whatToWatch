@@ -1,0 +1,56 @@
+.film {
+  display: flex;
+  gap: 30px;
+}
+
+.film__poster {
+  margin-left: 20px;
+  width: 400px;
+  height: 550px;
+}
+
+.field {
+  gap: 35px;
+  display: flex;
+  text-align: left;
+}
+
+.field__info {
+  color: rgb(223, 221, 221);
+  width: 800px;
+}
+
+.field__name {
+  color: rgb(120, 119, 119);
+  width: 100px;
+  text-align: left;
+}
+
+.comment_field {
+  margin-top: 20px;
+  padding-left: 20px;
+  width: 100vw;
+  min-height: 150px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment_button {
+  margin-top: 15px;
+  width: 80px;
+}
+
+.comment_name {
+  color: black;
+}
+
+textarea {
+  width: 500px;
+  height: 50px;
+}
+
+.comment_text {
+  color: black;
+}

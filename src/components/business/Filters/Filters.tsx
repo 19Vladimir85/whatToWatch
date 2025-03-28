@@ -7,8 +7,8 @@ import {
   setFilters,
   clearFilters,
   setLoading,
+  setFiltersData,
 } from 'store/slices/filtersSlice';
-import { setPagesAmount } from 'store/slices/pagesSlice';
 import { IRange, IGenre, ICountry } from 'types/types';
 import { ReactNode, useEffect, useState } from 'react';
 import { getAllCounties, getAllGenres } from 'utils/api';
@@ -32,7 +32,6 @@ export interface IFilterState {
   data?: IRange;
   rating?: string;
   country?: string;
-  // filmsAmount?: number;
 }
 
 interface IFilterProps {
@@ -46,23 +45,21 @@ export const Filters: React.FC<IFilterProps> = ({
   onFilterSet,
   className,
 }) => {
-  const filmsAmount: number[] = [10, 20, 30, 40, 50];
-  const [genres, setGenres] = useState<IGenre[]>([]);
-  const [countries, setCountries] = useState<ICountry[]>([]);
-
-  const { filters, loading } = useSelector(
+  const { filters, loading, filterData } = useSelector(
     (state: RootState) => state.filterReducer
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLoading(true));
-    Promise.all([getAllGenres(), getAllCounties()])
-      .then(([genres, countries]) => {
-        setGenres(genres);
-        setCountries(countries);
-      })
-      .finally(() => dispatch(setLoading(false)));
+    console.log(filterData, loading);
+    if (filterData.countries.length === 0 && filterData.genres.length === 0) {
+      dispatch(setLoading(true));
+      Promise.all([getAllGenres(), getAllCounties()])
+        .then(([genres, countries]) => {
+          dispatch(setFiltersData({ genres, countries }));
+        })
+        .finally(() => dispatch(setLoading(false)));
+    }
   }, []);
 
   const onGenreChange = (genre: string, isChecked: boolean) => {
@@ -81,16 +78,6 @@ export const Filters: React.FC<IFilterProps> = ({
   const onCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCountry = event.target.value;
     dispatch(setFilters({ ...filters, country: selectedCountry }));
-  };
-
-  // const onFilmsAmountChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   const selectedFilmsAmount = +event.target.value;
-  //   dispatch(setPagesAmount({ filmsPages: selectedFilmsAmount }));
-  // };
-
-  const onFilmsAmountChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedFilmsAmount = +event.target.value;
-    dispatch(setPagesAmount(selectedFilmsAmount));
   };
 
   const changeRating = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +99,7 @@ export const Filters: React.FC<IFilterProps> = ({
   return (
     <div className={cx(styles.wrapper, className)}>
       <FilterRow title="Жанры:">
-        {genres.map(({ name }) => (
+        {filterData.genres.map(({ name }) => (
           <Chip
             checked={filters.genre?.includes(name)}
             title={name}
@@ -125,7 +112,7 @@ export const Filters: React.FC<IFilterProps> = ({
       <FilterRow title="Страна:">
         <select value={filters.country} onChange={onCountryChange}>
           <option value="">Выберите страну</option>
-          {countries.map(({ name }) => (
+          {filterData.countries.map(({ name }) => (
             <option key={name} value={name}>
               {name}
             </option>
@@ -141,16 +128,6 @@ export const Filters: React.FC<IFilterProps> = ({
           value={filters.rating}
           onChange={changeRating}
         />
-      </FilterRow>
-      <FilterRow title="Фильмов на странице:">
-        <select onChange={onFilmsAmountChange}>
-          <option value="">Выберите количество</option>
-          {filmsAmount.map((el) => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select>
       </FilterRow>
       <button onClick={handleChange}>Отправить</button>
       <button onClick={handleReset}>Сбросить</button>
